@@ -4,7 +4,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -13,8 +15,12 @@ import java.util.Date;
 @Getter
 @Setter
 public class Model {
+
+    // primary key, generation type auto increment
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date creationDate;
+
+    // indicate the date the record was created
+    private Date creationDate = new Date();
 }
