@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class User extends Model{
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String handle;
     @Column(nullable = false)
     private String firstName;
