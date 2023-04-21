@@ -1,15 +1,19 @@
-package com.priyajit.project.socialnetwork.dto;
+package com.priyajit.project.socialnetwork.dto.requestDTO;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@Builder
-public class CreateUserRequestDTO {
+@SuperBuilder
+public class CreateUserRequestDTO extends RequestDTO {
+
     private String handle;
+
     private String firstName;
+
     private String lastName;
+
     private String password;
 }

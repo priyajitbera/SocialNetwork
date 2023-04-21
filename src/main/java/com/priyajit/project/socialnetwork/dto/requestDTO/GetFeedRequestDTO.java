@@ -1,2 +1,13 @@
-package com.priyajit.project.socialnetwork.dto.requestDTO;public class GetFeedRequestDTO {
+package com.priyajit.project.socialnetwork.dto.requestDTO;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@SuperBuilder
+public class GetFeedRequestDTO extends RequestDTO {
+
+    private Long userId;
 }
