@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Credential extends Model{
+
     @Column(nullable = false)
     private String secret;
 }
