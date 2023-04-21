@@ -1,9 +1,6 @@
 package com.priyajit.project.socialnetwork.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,7 +9,11 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Follow extends Model{
+@Table(uniqueConstraints = {
+        // constraint ensuring only one record is inserted for a unique followee and follower
+        @UniqueConstraint(name = "UQ_FOLLOW_FOLLOWEE_ID_FOLLOWER_ID", columnNames = {"followee_id", "follower_id"})
+})
+public class Follow extends Model {
 
     @ManyToOne
     @JoinColumn(name = "followee_id", foreignKey = @ForeignKey(name = "FK_REPLY_FOLLOWEE"))
