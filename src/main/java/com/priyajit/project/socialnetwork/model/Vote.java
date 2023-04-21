@@ -2,6 +2,7 @@ package com.priyajit.project.socialnetwork.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Getter
@@ -9,7 +10,13 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vote extends Model{
+@Table(uniqueConstraints = {
+        // constraint ensuring one user can make only one vote to a post
+        @UniqueConstraint(name = "UQ_VOTE_POST_ID_VOTER_ID", columnNames = {"post_id", "voter_id"}),
+
+        // constraint ensuring one user can make only one vote to a reply
+        @UniqueConstraint(name = "UQ_VOTE_REPLY_ID_VOTER_ID", columnNames = {"reply_id", "voter_id"})})
+public class Vote extends Model {
 
     @ManyToOne
     @JoinColumn(name = "voter_id", foreignKey = @ForeignKey(name = "FK_VOTE_USER"))
@@ -24,5 +31,6 @@ public class Vote extends Model{
     private Reply reply;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private VoteType voteType;
 }
